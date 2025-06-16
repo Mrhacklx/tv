@@ -78,6 +78,10 @@ async def start(client, message):
     except:
         file_id = data
         pre = ""
+    if data.split("-", 1)[0] != "verify":
+        btnn =[[
+                    InlineKeyboardButton("Get Your File", url=f"https://t.me/{username}?start={data}")
+                ]]
     if data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
         token = data.split("-", 3)[2]
@@ -88,9 +92,6 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            btnn =[[
-                    InlineKeyboardButton("Get Your File", url=f"https://t.me/{username}?start={data}")
-                ]]
             await message.reply_text(
                 text=f"""Hey {message.from_user.mention}, 
 ✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅
