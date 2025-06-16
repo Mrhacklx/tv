@@ -18,7 +18,7 @@ API_ID = int(environ.get('API_ID', '27382550'))
 API_HASH = environ.get('API_HASH', 'c428034cb811de290315501d8e3c82b5')
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
-PICS = (environ.get('PICS', 'https://graph.org/file/ce1723991756e48c35aa1.jpg')).split() # Bot Start Picture
+PICS = (environ.get('PICS', 'https://i.ibb.co/27qXHP94/Whats-App-Image-2025-06-16-at-14-11-42-9af52d26.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6739173851').split()]
 BOT_USERNAME = environ.get("BOT_USERNAME", "XYZGetModBot") # without @
 PORT = environ.get("PORT", "8080")
