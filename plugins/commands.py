@@ -36,7 +36,7 @@ def formate_file_name(file_name):
     chars = ["[", "]", "(", ")"]
     for c in chars:
         file_name.replace(c, "")
-    file_name = '@VJ_Botz ' + ' '.join(filter(lambda x: not x.startswith('http') and not x.startswith('@') and not x.startswith('www.'), file_name.split()))
+    file_name = '@TV_Fusion ' + ' '.join(filter(lambda x: not x.startswith('http') and not x.startswith('@') and not x.startswith('www.'), file_name.split()))
     return file_name
 
 
@@ -49,10 +49,13 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://youtube.com/@Tech_VJ')
+            InlineKeyboardButton('Colors TV', url='https://youtube.com/@Tech_VJ'),
+            InlineKeyboardButton('Star Plus', url='https://youtube.com/@Tech_VJ')
             ],[
-            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/vj_bot_disscussion'),
-            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/vj_botz')
+            InlineKeyboardButton('Zee TV', url='https://youtube.com/@Tech_VJ'),
+            InlineKeyboardButton('Sony Sab', url='https://youtube.com/@Tech_VJ')
+            ],[
+            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/TV_Fusion')
             ],[
             InlineKeyboardButton('💁‍♀️ ʜᴇʟᴘ', callback_data='help'),
             InlineKeyboardButton('😊 ᴀʙᴏᴜᴛ', callback_data='about')
@@ -86,7 +89,12 @@ async def start(client, message):
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
             await message.reply_text(
-                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files till today midnight.</b>",
+                text=f"""Hey {message.from_user.mention}, 
+✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅
+
+🎉 𝙔𝙤𝙪’𝙧𝙚 𝙫𝙚𝙧𝙞𝙛𝙞𝙚𝙙! 𝙉𝙤𝙬 𝙮𝙤𝙪 𝙘𝙖𝙣 𝙖𝙘𝙘𝙚𝙨𝙨 𝙖𝙡𝙡 𝙛𝙞𝙡𝙚𝙨 𝙬𝙞𝙩𝙝𝙤𝙪𝙩 𝙖𝙣𝙮 𝙡𝙞𝙢𝙞𝙩𝙨 𝙤𝙧 𝙙𝙞𝙨𝙩𝙪𝙧𝙗𝙖𝙣𝙘𝙚 𝙛𝙤𝙧 𝙩𝙤𝙙𝙖𝙮.
+
+🔓 𝙁𝙧𝙚𝙚 𝙖𝙣𝙙 𝙪𝙣𝙡𝙞𝙢𝙞𝙩𝙚𝙙 𝙨𝙚𝙧𝙞𝙖𝙡 𝙖𝙘𝙘𝙚𝙨𝙨 𝙞𝙨 𝙣𝙤𝙬 𝙚𝙣𝙖𝙗𝙡𝙚𝙙!""",
                 protect_content=True
             )
             await verify_user(client, userid, token)
@@ -101,10 +109,12 @@ async def start(client, message):
                 btn = [[
                     InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{username}?start="))
                 ],[
-                    InlineKeyboardButton("How To Open Link & Verify", url=VERIFY_TUTORIAL)
+                    InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                 ]]
                 await message.reply_text(
-                    text="<b>You are not verified !\nKindly verify to continue !</b>",
+                    text="""🚫 ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪꜰɪᴇᴅ!
+                    
+🔐 ᴘʟᴇᴀꜱᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴀᴄᴄᴇꜱꜱɪɴɢ ꜰɪʟᴇꜱ ᴡɪᴛʜᴏᴜᴛ ɪɴᴛᴇʀʀᴜᴘᴛɪᴏɴ.""",
                     protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -311,11 +321,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
   
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://youtube.com/@Tech_VJ')
-        ],[
-            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/vj_bot_disscussion'),
-            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/vj_botz')
-        ],[
+            InlineKeyboardButton('Colors TV', url='https://youtube.com/@Tech_VJ'),
+            InlineKeyboardButton('Star Plus', url='https://youtube.com/@Tech_VJ')
+            ],[
+            InlineKeyboardButton('Zee TV', url='https://youtube.com/@Tech_VJ'),
+            InlineKeyboardButton('Sony Sab', url='https://youtube.com/@Tech_VJ')
+            ],[
+            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/TV_Fusion')
+            ],[
             InlineKeyboardButton('💁‍♀️ ʜᴇʟᴘ', callback_data='help'),
             InlineKeyboardButton('😊 ᴀʙᴏᴜᴛ', callback_data='about')
         ]]
