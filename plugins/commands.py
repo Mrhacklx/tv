@@ -82,6 +82,7 @@ async def start(client, message):
     if data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
         token = data.split("-", 3)[2]
+        file_data = data.split("-", 4)[3]
         if str(message.from_user.id) != str(userid):
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",
@@ -89,6 +90,9 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
+            btnn = [[
+                    InlineKeyboardButton("📥 Get Your File", url=f"https://t.me/{client.me.username}?start={file_data})
+                ]]
             await message.reply_text(
                 text=f"""Hey {message.from_user.mention}, 
 ✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅
@@ -96,7 +100,8 @@ async def start(client, message):
 🎉 𝙔𝙤𝙪’𝙧𝙚 𝙫𝙚𝙧𝙞𝙛𝙞𝙚𝙙! 𝙉𝙤𝙬 𝙮𝙤𝙪 𝙘𝙖𝙣 𝙖𝙘𝙘𝙚𝙨𝙨 𝙖𝙡𝙡 𝙛𝙞𝙡𝙚𝙨 𝙬𝙞𝙩𝙝𝙤𝙪𝙩 𝙖𝙣𝙮 𝙡𝙞𝙢𝙞𝙩𝙨 𝙤𝙧 𝙙𝙞𝙨𝙩𝙪𝙧𝙗𝙖𝙣𝙘𝙚 𝙛𝙤𝙧 𝙩𝙤𝙙𝙖𝙮.
 
 🔓 𝙁𝙧𝙚𝙚 𝙖𝙣𝙙 𝙪𝙣𝙡𝙞𝙢𝙞𝙩𝙚𝙙 𝙨𝙚𝙧𝙞𝙖𝙡 𝙖𝙘𝙘𝙚𝙨𝙨 𝙞𝙨 𝙣𝙤𝙬 𝙚𝙣𝙖𝙗𝙡𝙚𝙙!""",
-                protect_content=True
+                protect_content=True,
+                reply_markup=InlineKeyboardMarkup(btnn)
                
             )
             await verify_user(client, userid, token)
