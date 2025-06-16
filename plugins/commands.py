@@ -82,7 +82,9 @@ async def start(client, message):
     if data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
         token = data.split("-", 3)[2]
-        file_data = data.split("-", 3)[-1]
+        parts = data.split("-", 3)
+        file_data = parts[3]
+    
         if str(message.from_user.id) != str(userid):
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",
