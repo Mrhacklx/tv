@@ -100,7 +100,8 @@ async def start(client, message):
             await verify_user(client, userid, token)
         else:
             return await message.reply_text(
-                text="<b>Invalid link or Expired link !</b>",
+                text="""🚫 ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪꜰɪᴇᴅ!
+🔐 ᴘʟᴇᴀꜱᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴀᴄᴄᴇꜱꜱɪɴɢ ꜰɪʟᴇꜱ ᴡɪᴛʜᴏᴜᴛ ɪɴᴛᴇʀʀᴜᴘᴛɪᴏɴ.""",
                 protect_content=True
             )
     elif data.split("-", 1)[0] == "BATCH":
