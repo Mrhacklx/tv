@@ -79,9 +79,11 @@ async def start(client, message):
         file_id = data
         pre = ""
     if data.split("-", 1)[0] != "verify":
-        btnn =[[
-                    InlineKeyboardButton("Get Your File", url=f"https://t.me/{username}?start={data}")
-                ]]
+        get_file_data = file_id if pre else data  # Keep file ID or use data if no prefi
+        btnn = [[
+            InlineKeyboardButton("🎁 Get Your File", url=f"https://t.me/{username}?start={get_file_data}")
+              ]]
+
     if data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
         token = data.split("-", 3)[2]
