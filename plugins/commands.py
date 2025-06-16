@@ -78,11 +78,6 @@ async def start(client, message):
     except:
         file_id = data
         pre = ""
-    if data.split("-", 1)[0] != "verify":
-        get_file_data = file_id if pre else data  # Keep file ID or use data if no prefi
-        btnn = [[
-            InlineKeyboardButton("🎁 Get Your File", url=f"https://t.me/{username}?start={get_file_data}")
-              ]]
 
     if data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
@@ -101,8 +96,8 @@ async def start(client, message):
 🎉 𝙔𝙤𝙪’𝙧𝙚 𝙫𝙚𝙧𝙞𝙛𝙞𝙚𝙙! 𝙉𝙤𝙬 𝙮𝙤𝙪 𝙘𝙖𝙣 𝙖𝙘𝙘𝙚𝙨𝙨 𝙖𝙡𝙡 𝙛𝙞𝙡𝙚𝙨 𝙬𝙞𝙩𝙝𝙤𝙪𝙩 𝙖𝙣𝙮 𝙡𝙞𝙢𝙞𝙩𝙨 𝙤𝙧 𝙙𝙞𝙨𝙩𝙪𝙧𝙗𝙖𝙣𝙘𝙚 𝙛𝙤𝙧 𝙩𝙤𝙙𝙖𝙮.
 
 🔓 𝙁𝙧𝙚𝙚 𝙖𝙣𝙙 𝙪𝙣𝙡𝙞𝙢𝙞𝙩𝙚𝙙 𝙨𝙚𝙧𝙞𝙖𝙡 𝙖𝙘𝙘𝙚𝙨𝙨 𝙞𝙨 𝙣𝙤𝙬 𝙚𝙣𝙖𝙗𝙡𝙚𝙙!""",
-                protect_content=True,
-                reply_markup=InlineKeyboardMarkup(btnn)
+                protect_content=True
+               
             )
             await verify_user(client, userid, token)
         else:
