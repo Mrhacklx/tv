@@ -89,7 +89,7 @@ async def start(client, message):
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
             btnn =[[
-                    InlineKeyboardButton("Get Your File", url=f"https://t.me/{username}?start={file_id}")
+                    InlineKeyboardButton("Get Your File", url=f"https://t.me/{username}?start={data}")
                 ]]
             await message.reply_text(
                 text=f"""Hey {message.from_user.mention}, 
