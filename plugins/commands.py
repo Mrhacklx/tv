@@ -49,11 +49,11 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('Colors TV', url='https://youtube.com/@Tech_VJ'),
-            InlineKeyboardButton('Star Plus', url='https://youtube.com/@Tech_VJ')
+            InlineKeyboardButton('Colors TV', url='https://t.me/+KkXKjYhr1CExZDRl'),
+            InlineKeyboardButton('Star Plus', url='https://t.me/+RUjOTEJiVMY5YTc1')
             ],[
-            InlineKeyboardButton('Zee TV', url='https://youtube.com/@Tech_VJ'),
-            InlineKeyboardButton('Sony Sab', url='https://youtube.com/@Tech_VJ')
+            InlineKeyboardButton('Zee TV', url='https://t.me/+OatBxx11wx80Mzk9'),
+            InlineKeyboardButton('Sony Sab', url='https://t.me/+S20cfBUKFaY1NzFl')
             ],[
             InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/TV_Fusion')
             ],[
@@ -322,11 +322,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
   
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('Colors TV', url='https://youtube.com/@Tech_VJ'),
-            InlineKeyboardButton('Star Plus', url='https://youtube.com/@Tech_VJ')
+            InlineKeyboardButton('Colors TV', url='https://t.me/+KkXKjYhr1CExZDRl'),
+            InlineKeyboardButton('Star Plus', url='https://t.me/+RUjOTEJiVMY5YTc1')
             ],[
-            InlineKeyboardButton('Zee TV', url='https://youtube.com/@Tech_VJ'),
-            InlineKeyboardButton('Sony Sab', url='https://youtube.com/@Tech_VJ')
+            InlineKeyboardButton('Zee TV', url='https://t.me/+OatBxx11wx80Mzk9'),
+            InlineKeyboardButton('Sony Sab', url='https://t.me/+S20cfBUKFaY1NzFl')
             ],[
             InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/TV_Fusion')
             ],[
