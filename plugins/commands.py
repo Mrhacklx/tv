@@ -273,6 +273,93 @@ async def start(client, message):
         pass
         
 
+
+@Client.on_message(filters.command("add_premium"))
+async def give_premium_cmd_handler(client, message):
+    if PREMIUM_AND_REFERAL_MODE == False:
+        return 
+    user_id = message.from_user.id
+    if user_id not in ADMINS:
+        await message.delete()
+        return
+    if len(message.command) == 3:
+        user_id = int(message.command[1])  # Convert the user_id to integer
+        time = message.command[2]        
+        seconds = await get_seconds(time)
+        if seconds > 0:
+            expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
+            user_data = {"id": user_id, "expiry_time": expiry_time} 
+            await db.update_user(user_data)  # Use the update_user method to update or insert user data
+            await message.reply_text("Premium access added to the user.")            
+            await client.send_message(
+                chat_id=user_id,
+                text = f"👋 ʜᴇʏ,\nᴛʜᴀɴᴋ ʏᴏᴜ ꜰᴏʀ ᴘᴜʀᴄʜᴀꜱɪɴɢ ᴘʀᴇᴍɪᴜᴍ.\nᴇɴᴊᴏʏ !! ✨🎉\n\n⏰ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴇꜱꜱ : {time}\n⏳ ᴊᴏɪɴɪɴɢ ᴅᴀᴛᴇ : {datetime.datetime.now()}\n\n⌛ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_time}",
+            )
+        else:
+            await message.reply_text("Invalid time format. Please use '1day for days', '1hour for hours', or '1min for minutes', or '1month for months' or '1year for year'")
+    else:
+        await message.reply_text("<b>Usage: /add_premium user_id time \n\nExample /add_premium 1252789 10day \n\n(e.g. for time units '1day for days', '1hour for hours', or '1min for minutes', or '1month for months' or '1year for year')</b>")
+        
+@Client.on_message(filters.command("remove_premium"))
+async def remove_premium_cmd_handler(client, message):
+    if PREMIUM_AND_REFERAL_MODE == False:
+        return 
+    user_id = message.from_user.id
+    if user_id not in ADMINS:
+        await message.delete()
+        return
+    if len(message.command) == 2:
+        user_id = int(message.command[1])  # Convert the user_id to integer
+      #  time = message.command[2]
+        time = "1s"
+        seconds = await get_seconds(time)
+        if seconds > 0:
+            expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
+            user_data = {"id": user_id, "expiry_time": expiry_time}  # Using "id" instead of "user_id"
+            await db.update_user(user_data)  # Use the update_user method to update or insert user data
+            await message.reply_text("Premium access removed to the user.")
+            await client.send_message(
+                chat_id=user_id,
+                text="<b>premium removed by admins \n\n Contact Admin if this is mistake \n\n 👮 Admin : {} \n</b>".format(OWNER_LNK),                
+            )
+        else:
+            await message.reply_text("Invalid time format.'")
+    else:
+        await message.reply_text("Usage: /remove_premium user_id")
+        
+@Client.on_message(filters.command("plan"))
+async def plans_cmd_handler(client, message): 
+    if PREMIUM_AND_REFERAL_MODE == False:
+        return 
+    btn = [            
+        [InlineKeyboardButton("ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ʀᴇᴄᴇɪᴘᴛ 🧾", url=OWNER_LNK)],
+        [InlineKeyboardButton("⚠️ ᴄʟᴏsᴇ / ᴅᴇʟᴇᴛᴇ ⚠️", callback_data="close_data")]
+    ]
+    reply_markup = InlineKeyboardMarkup(btn)
+    await message.reply_photo(
+        photo=PAYMENT_QR,
+        caption=PAYMENT_TEXT,
+        reply_markup=reply_markup
+    )
+        
+@Client.on_message(filters.command("myplan"))
+async def check_plans_cmd(client, message):
+    if PREMIUM_AND_REFERAL_MODE == False:
+        return 
+    user_id  = message.from_user.id
+    if await db.has_premium_access(user_id):         
+        remaining_time = await db.check_remaining_uasge(user_id)             
+        expiry_time = remaining_time + datetime.datetime.now()
+        await message.reply_text(f"**Your plans details are :\n\nRemaining Time : {remaining_time}\n\nExpirytime : {expiry_time}**")
+    else:
+
+        m=await message.reply_sticker("CAACAgIAAxkBAAIBTGVjQbHuhOiboQsDm35brLGyLQ28AAJ-GgACglXYSXgCrotQHjibHgQ")         
+        await message.reply_text(f"**😢 You Don't Have Any Premium Subscription.\n\n Check Out Our Premium /plan**")
+        await asyncio.sleep(2)
+        await m.delete()
+
+
+
 @Client.on_message(filters.command('api') & filters.private)
 async def shortener_api_handler(client, m: Message):
     user_id = m.from_user.id
