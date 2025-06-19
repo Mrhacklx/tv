@@ -1,4 +1,4 @@
-                                                                         import motor.motor_asyncio
+import motor.motor_asyncio
 from config import DB_NAME, DB_URI
 
 class Database:
