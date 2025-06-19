@@ -1,4 +1,4 @@
-import motor.motor_asyncio
+                                                                         import motor.motor_asyncio
 from config import DB_NAME, DB_URI
 
 class Database:
@@ -8,24 +8,24 @@ class Database:
         self.col = self.db.users
         self.users = self.db.uersz
 
+    # def new_user(self, id, name):
+    #     return dict(
+    #         id = id,
+    #         name = name,
+    #     )
     def new_user(self, id, name):
+        timestamp_now = __import__('time').time()
+        expire_seconds = 30 * 24 * 60 * 60  # 30 days in seconds
+        expire_timestamp = timestamp_now + expire_seconds
+    
+        # Convert timestamp to readable date
+        expire_date = __import__('time').strftime("%Y-%m-%d", __import__('time').localtime(expire_timestamp))
+    
         return dict(
-            id = id,
-            name = name,
+            id=id,
+            name=name,
+            expire_date=expire_date
         )
-def new_user(self, id, name):
-    timestamp_now = __import__('time').time()
-    expire_seconds = 30 * 24 * 60 * 60  # 30 days in seconds
-    expire_timestamp = timestamp_now + expire_seconds
-
-    # Convert timestamp to readable date
-    expire_date = __import__('time').strftime("%Y-%m-%d", __import__('time').localtime(expire_timestamp))
-
-    return dict(
-        id=id,
-        name=name,
-        expire_date=expire_date
-    )
 
 
     async def add_user(self, id, name):
