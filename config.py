@@ -34,6 +34,8 @@ CDB_NAME = environ.get("CDB_NAME", "clonetechvj")
 DB_URI = environ.get("DB_URI", "")
 DB_NAME = environ.get("DB_NAME", "techvjbotz")
 
+PREMIUM_AND_REFERAL_MODE = bool(environ.get('PREMIUM_AND_REFERAL_MODE', True)) # Set Ture Or False
+
 # Auto Delete Information
 AUTO_DELETE_MODE = bool(environ.get('AUTO_DELETE_MODE', True)) # Set True or False
 
