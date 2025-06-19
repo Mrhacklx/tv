@@ -2,6 +2,18 @@ import motor.motor_asyncio
 from config import DB_NAME, DB_URI
 
 class Database:
+    def __init__(self, uri, database_name):
+        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
+        self.db = self._client[database_name]
+        self.col = self.db.users
+        self.users = self.db.uersz
+
+    def new_user(self, id, name):
+        return dict(
+            id = id,
+            name = name,
+        )
+
     async def has_premium_access(self, user_id):
         user_data = await self.get_user(user_id)
         if user_data:
@@ -18,16 +30,6 @@ class Database:
     async def update_user(self, user_data):
         await self.users.update_one({"id": user_data["id"]}, {"$set": user_data}, upsert=True)
     
-    def __init__(self, uri, database_name):
-        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
-        self.db = self._client[database_name]
-        self.col = self.db.users
-
-    def new_user(self, id, name):
-        return dict(
-            id = id,
-            name = name,
-        )
     
     async def add_user(self, id, name):
         user = self.new_user(id, name)
