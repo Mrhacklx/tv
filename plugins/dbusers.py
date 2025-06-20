@@ -42,8 +42,8 @@ class Database:
     
     async def check_expiry_date(self, id, today):
         user = await self.col.find_one({'id': int(id)})
-        # if not user or 'expiry_date' not in user:
-        #     return False 
+        if not user or 'expiry_date' not in user:
+            return False 
         expiry_date = datetime.strptime(user['expiry_date'], '%Y-%m-%d').date()
         if isinstance(today, str):
             today = datetime.strptime(today, '%Y-%m-%d').date()
