@@ -118,7 +118,7 @@ async def start(client, message):
     elif data.split("-", 1)[0] == "BATCH":
         try:
             
-            if not await check_verification(client, message.from_user.id) and VERIFY_MODE == True and not db.check_expiry_date(message.from_user.id, datetime.utcnow().date()):
+            if not await check_verification(client, message.from_user.id) and VERIFY_MODE == True and not await db.check_expiry_date(message.from_user.id, datetime.utcnow().date()):
                 btn = [[
                     InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{username}?start=", data))
                 ],[
