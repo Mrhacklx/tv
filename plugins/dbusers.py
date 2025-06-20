@@ -1,5 +1,6 @@
 import motor.motor_asyncio
 from config import DB_NAME, DB_URI
+from datetime import datetime
 
 class Database:
     def __init__(self, uri, database_name):
@@ -36,6 +37,19 @@ class Database:
     async def is_user_exist(self, id):
         user = await self.col.find_one({'id':int(id)})
         return bool(user)
+
+    
+    
+    async def check_expiry_date(self, id, today):
+        user = await self.col.find_one({'id': int(id)})
+        if not user or 'expiry_date' not in user:
+            return False 
+        expiry_date = datetime.strptime(user['expiry_date'], '%Y-%m-%d').date()
+        if isinstance(today, str):
+            today = datetime.strptime(today, '%Y-%m-%d').date()
+        return today < expiry_date
+
+         
 
     async def total_users_count(self):
         count = await self.col.count_documents({})
