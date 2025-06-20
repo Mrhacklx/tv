@@ -8,24 +8,25 @@ class Database:
         self.col = self.db.users
         self.users = self.db.uersz
 
-    # def new_user(self, id, name):
-    #     return dict(
-    #         id = id,
-    #         name = name,
-    #     )
-    def new_user(self, id, name):
-        timestamp_now = __import__('time').time()
-        expire_seconds = 30 * 24 * 60 * 60  # 30 days in seconds
-        expire_timestamp = timestamp_now + expire_seconds
-    
-        # Convert timestamp to readable date
-        expire_date = __import__('time').strftime("%Y-%m-%d", __import__('time').localtime(expire_timestamp))
-    
+    def new_user(self, id, name, expiry_date):
         return dict(
-            id=id,
-            name=name,
-            expire_date=expire_date
+            id = id,
+            name = name,
+            expiry_date = expiry_date,
         )
+    # def new_user(self, id, name):
+    #     timestamp_now = __import__('time').time()
+    #     expire_seconds = 30 * 24 * 60 * 60  # 30 days in seconds
+    #     expire_timestamp = timestamp_now + expire_seconds
+    
+    #     # Convert timestamp to readable date
+    #     expire_date = __import__('time').strftime("%Y-%m-%d", __import__('time').localtime(expire_timestamp))
+    
+    #     return dict(
+    #         id=id,
+    #         name=name,
+    #         expire_date=expire_date
+    #     )
 
 
     async def add_user(self, id, name, expiry_date):
