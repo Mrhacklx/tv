@@ -52,11 +52,11 @@ BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
 # Verify Info :-
-VERIFY_MODE = bool(environ.get('VERIFY_MODE', False)) # Set True or False
+VERIFY_MODE = bool(environ.get('VERIFY_MODE', True)) # Set True or False
 
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-SHORTLINK_URL = environ.get("SHORTLINK_URL", "linkcents.com") # shortlink domain without https://
-SHORTLINK_API = environ.get("SHORTLINK_API", "20463646db691c8f98b5f40b0082bf233b4bd51a") # shortlink api
+SHORTLINK_URL = environ.get("SHORTLINK_URL", "shortxlinks.com") # shortlink domain without https://
+SHORTLINK_API = environ.get("SHORTLINK_API", "4f6e8de9640e8c0e08d0d3ba2f22173caa9f74d4") # shortlink api
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_to_Open0") # how to open link 
 
 # Website Info:
