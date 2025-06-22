@@ -20,6 +20,7 @@ BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
 PICS = (environ.get('PICS', 'https://i.ibb.co/27qXHP94/Whats-App-Image-2025-06-16-at-14-11-42-9af52d26.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6739173851').split()]
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/Mr_attherate')
 BOT_USERNAME = environ.get("BOT_USERNAME", "XYZGetModBot") # without @
 PORT = environ.get("PORT", "8080")
 
