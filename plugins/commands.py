@@ -109,8 +109,11 @@ async def start(client, message):
             await verify_user(client, userid, token)
         else:
             return await message.reply_text(
-                text="""🚫 ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪꜰɪᴇᴅ!
-🔐 ᴘʟᴇᴀꜱᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴀᴄᴄᴇꜱꜱɪɴɢ ꜰɪʟᴇꜱ ᴡɪᴛʜᴏᴜᴛ ɪɴᴛᴇʀʀᴜᴘᴛɪᴏɴ.""",
+                text="""🚫 Free plan khatam ho gaya  
+                🔐 File access ke liye sirf ek baar verify karo  
+                ✅ Aaj ke liye bas ek hi baar verification lagega  
+                
+                📅 Subscription ke liye /plan par click kare""",
                 protect_content=True
             )
     elif data.split("-", 1)[0] == "BATCH":
@@ -223,9 +226,11 @@ async def start(client, message):
             InlineKeyboardButton("How To Open Link & Verify", url=VERIFY_TUTORIAL)
         ]]
         await message.reply_text(
-            text="""🚫 ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪꜰɪᴇᴅ!
-                    
-🔐 ᴘʟᴇᴀꜱᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴀᴄᴄᴇꜱꜱɪɴɢ ꜰɪʟᴇꜱ ᴡɪᴛʜᴏᴜᴛ ɪɴᴛᴇʀʀᴜᴘᴛɪᴏɴ.""",
+            text="""🚫 Free plan khatam ho gaya  
+                🔐 File access ke liye sirf ek baar verify karo  
+                ✅ Aaj ke liye bas ek hi baar verification lagega  
+                
+                📅 Subscription ke liye /plan par click kare""",
             protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
