@@ -99,8 +99,8 @@ async def start(client, message):
                 ]]
             await message.reply_text(
                 text=f"""Hey {message.from_user.mention}, 
-                ✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅  
-                🔓 Aaj ke liye sabhi files free aur bina rukawat access kar sakte hain.""",
+✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅  
+🔓 Aaj ke liye sabhi files free aur bina rukawat access kar sakte hain.""",
                 protect_content=True,
                 reply_markup=InlineKeyboardMarkup(btnn)
                
@@ -108,9 +108,9 @@ async def start(client, message):
             await verify_user(client, userid, token)
         else:
             return await message.reply_text(
-                text = """🚫 Free plan khatam ho gaya  
-🔐 File access ke liye sirf ek baar verify karo  
-✅ Aaj ke liye bas ek hi baar verification lagega  
+                text = """🚫 Free Plan Khatam Ho Gaya  
+
+🔐 File access ke liye verify kare. Aapko sirf din mein ek baar verify karna padega — uske baad aaj ke liye koi verification nahi hoga.
 
 📅 Subscription ke liye /plan par click kare"""
 ,
@@ -126,9 +126,9 @@ async def start(client, message):
                     InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                 ]]
                 await message.reply_text(
-                    text = """🚫 Free plan khatam ho gaya  
-🔐 File access ke liye sirf ek baar verify karo  
-✅ Aaj ke liye bas ek hi baar verification lagega  
+                    text = """🚫 Free Plan Khatam Ho Gaya  
+
+🔐 File access ke liye verify kare. Aapko sirf din mein ek baar verify karna padega — uske baad aaj ke liye koi verification nahi hoga.
 
 📅 Subscription ke liye /plan par click kare"""
 ,
@@ -228,9 +228,9 @@ async def start(client, message):
             InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{username}?start=", data))
         ],[
             InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)]]
-        await message.reply_text(text = """🚫 Free plan khatam ho gaya  
-🔐 File access ke liye sirf ek baar verify karo  
-✅ Aaj ke liye bas ek hi baar verification lagega  
+        await message.reply_text(text = """🚫 Free Plan Khatam Ho Gaya  
+
+🔐 File access ke liye verify kare. Aapko sirf din mein ek baar verify karna padega — uske baad aaj ke liye koi verification nahi hoga.
 
 📅 Subscription ke liye /plan par click kare""",
                                  protect_content=True,
