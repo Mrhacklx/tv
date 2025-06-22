@@ -279,6 +279,38 @@ async def start(client, message):
     except:
         pass
     
+@Client.on_message(filters.command("plan"))
+async def plans_cmd_handler(client, message): 
+    if PREMIUM_MODE == False:
+        return 
+    btn = [            
+        [InlineKeyboardButton("ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ʀᴇᴄᴇɪᴘᴛ 🧾", url=OWNER_LNK)]
+    ]
+    reply_markup = InlineKeyboardMarkup(btn)
+    await message.reply_photo(
+        photo=PAYMENT_QR,
+        caption=PAYMENT_TEXT,
+        reply_markup=reply_markup
+    )
+        
+@Client.on_message(filters.command("myplan"))
+async def check_plans_cmd(client, message):
+    if PREMIUM_MODE == False:
+        return 
+    user_id  = message.from_user.id
+    if await db.check_expiry_date(message.from_user.id, datetime.utcnow().date()):         
+        remaining_time = await db.check_remaining_uasge(user_id)             
+        expiry_time = remaining_time + datetime.datetime.now()
+        await message.reply_text(f"**Your plans details are :\n\nRemaining Time : {remaining_time}\n\nExpirytime : {expiry_time}**")
+    else:
+        btn = [ 
+            [InlineKeyboardButton("⚠️ ᴄʟᴏsᴇ / ᴅᴇʟᴇᴛᴇ ⚠️", callback_data="close_data")]
+        ]
+        reply_markup = InlineKeyboardMarkup(btn)
+        m=await message.reply_sticker("CAACAgIAAxkBAAIBTGVjQbHuhOiboQsDm35brLGyLQ28AAJ-GgACglXYSXgCrotQHjibHgQ")         
+        await message.reply_text(f"**😢 You Don't Have Any Premium Subscription.\n\n Check Out Our Premium /plan**",reply_markup=reply_markup)
+        await asyncio.sleep(2)
+        await m.delete()
 
 
 @Client.on_callback_query()
