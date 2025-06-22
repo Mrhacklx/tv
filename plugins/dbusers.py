@@ -38,7 +38,7 @@ class Database:
         user = await self.col.find_one({'id':int(id)})
         return bool(user)
 
-    async def check_remaining_usage(self, user_id):
+    async def check_remaining_uasge(self, user_id):
         user_data = await self.users.find_one({"id": user_id})
         if user_data:
             expiry_time = user_data.get("expiry_time")
