@@ -39,23 +39,23 @@ class Database:
         return bool(user)
 
     async def check_remaining_usage(self, user_id):
-    user_data = await self.get_user(user_id)
-    if user_data:
-        expiry_time = user_data.get("expiry_time")
-        if expiry_time is None:
-            return 0  # No active premium
-
-        # Ensure expiry_time is a datetime object
-        if isinstance(expiry_time, datetime):
-            now = datetime.now()
-            if now <= expiry_time:
-                remaining = (expiry_time - now).days
-                return max(1, remaining)  # At least 1 day left
-            else:
-                # Expired, clear it
-                await self.users.update_one({"id": user_id}, {"$set": {"expiry_time": None}})
-                return 0
-    return 0
+        user_data = await self.users.find_one({"id": user_id})
+        if user_data:
+            expiry_time = user_data.get("expiry_time")
+            if expiry_time is None:
+                return 0  # No active premium
+    
+            # Ensure expiry_time is a datetime object
+            if isinstance(expiry_time, datetime):
+                now = datetime.now()
+                if now <= expiry_time:
+                    remaining = (expiry_time - now).days
+                    return max(1, remaining)  # At least 1 day left
+                else:
+                    # Expired, clear it
+                    await self.users.update_one({"id": user_id}, {"$set": {"expiry_time": None}})
+                    return 0
+        return 0
     
     async def check_expiry_date(self, id, today):
         user = await self.col.find_one({'id': int(id)})
