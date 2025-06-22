@@ -299,7 +299,7 @@ async def check_plans_cmd(client, message):
     if PREMIUM_MODE == False:
         return 
     user_id  = message.from_user.id
-    if not await db.check_expiry_date(message.from_user.id, datetime.utcnow().date()):         
+    if await db.check_expiry_date(message.from_user.id, datetime.utcnow().date()):         
         remaining_time = await db.check_remaining_uasge(message.from_user.id)        
         expiry_time = datetime.utcnow().date() + timedelta(days=remaining_time)
         await message.reply_text(f"**Your plans details are :\n\nRemaining Time : {remaining_time}\n\nExpirytime : {expiry_time}**")
