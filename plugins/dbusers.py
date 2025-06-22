@@ -62,7 +62,7 @@ class Database:
         if user_data:
             expiry_str = user_data.get("expiry_date")
             if expiry_str is None:
-                return 0  # No active premium
+                return 1  # No active premium
     
             try:
                 expiry_date = datetime.strptime(expiry_str, "%Y-%m-%d").date()
@@ -72,12 +72,12 @@ class Database:
                     remaining = (expiry_date - today).days
                     return max(1, remaining)
                 else:
-                    return 0
+                    return 2
             except ValueError:
                 # If date format is invalid
-                return 0
+                return 3
     
-        return 0
+        return 4
 
     async def check_expiry_date(self, id, today):
         user = await self.col.find_one({'id': int(id)})
