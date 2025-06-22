@@ -23,6 +23,8 @@ ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ
 BOT_USERNAME = environ.get("BOT_USERNAME", "XYZGetModBot") # without @
 PORT = environ.get("PORT", "8080")
 
+PREMIUM_AND_REFERAL_MODE = bool(environ.get('PREMIUM_AND_REFERAL_MODE', True))
+
 # Clone Info :-
 CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
 
