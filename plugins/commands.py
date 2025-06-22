@@ -99,9 +99,8 @@ async def start(client, message):
                 ]]
             await message.reply_text(
                 text=f"""Hey {message.from_user.mention}, 
-                ✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅
-                🎉 𝙔𝙤𝙪’𝙧𝙚 𝙫𝙚𝙧𝙞𝙛𝙞𝙚𝙙! 𝙉𝙤𝙬 𝙮𝙤𝙪 𝙘𝙖𝙣 𝙖𝙘𝙘𝙚𝙨𝙨 𝙖𝙡𝙡 𝙛𝙞𝙡𝙚𝙨 𝙬𝙞𝙩𝙝𝙤𝙪𝙩 𝙖𝙣𝙮 𝙡𝙞𝙢𝙞𝙩𝙨 𝙤𝙧 𝙙𝙞𝙨𝙩𝙪𝙧𝙗𝙖𝙣𝙘𝙚 𝙛𝙤𝙧 𝙩𝙤𝙙𝙖𝙮.
-                🔓 𝙁𝙧𝙚𝙚 𝙖𝙣𝙙 𝙪𝙣𝙡𝙞𝙢𝙞𝙩𝙚𝙙 𝙨𝙚𝙧𝙞𝙖𝙡 𝙖𝙘𝙘𝙚𝙨𝙨 𝙞𝙨 𝙣𝙤𝙬 𝙚𝙣𝙖𝙗𝙡𝙚𝙙!""",
+                ✅ 𝙑𝙚𝙧𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡 ✅  
+                🔓 Aaj ke liye sabhi files free aur bina rukawat access kar sakte hain.""",
                 protect_content=True,
                 reply_markup=InlineKeyboardMarkup(btnn)
                
@@ -126,8 +125,11 @@ async def start(client, message):
                     InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                 ]]
                 await message.reply_text(
-                    text="""🚫 ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪꜰɪᴇᴅ!
-                    🔐 ᴘʟᴇᴀꜱᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴀᴄᴄᴇꜱꜱɪɴɢ ꜰɪʟᴇꜱ ᴡɪᴛʜᴏᴜᴛ ɪɴᴛᴇʀʀᴜᴘᴛɪᴏɴ.""",
+                    text="""🚫 Free plan khatam ho gaya  
+                🔐 File access ke liye sirf ek baar verify karo  
+                ✅ Aaj ke liye bas ek hi baar verification lagega  
+                
+                📅 Subscription ke liye /plan par click kare""",
                     protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -277,42 +279,6 @@ async def start(client, message):
     except:
         pass
     
-
-
-@Client.on_message(filters.command('api') & filters.private)
-async def shortener_api_handler(client, m: Message):
-    user_id = m.from_user.id
-    user = await get_user(user_id)
-    cmd = m.command
-
-    if len(cmd) == 1:
-        s = script.SHORTENER_API_MESSAGE.format(base_site=user["base_site"], shortener_api=user["shortener_api"])
-        return await m.reply(s)
-
-    elif len(cmd) == 2:    
-        api = cmd[1].strip()
-        await update_user_info(user_id, {"shortener_api": api})
-        await m.reply("<b>Shortener API updated successfully to</b> " + api)
-
-
-@Client.on_message(filters.command("base_site") & filters.private)
-async def base_site_handler(client, m: Message):
-    user_id = m.from_user.id
-    user = await get_user(user_id)
-    cmd = m.command
-    text = f"`/base_site (base_site)`\n\n<b>Current base site: None\n\n EX:</b> `/base_site shortnerdomain.com`\n\nIf You Want To Remove Base Site Then Copy This And Send To Bot - `/base_site None`"
-    if len(cmd) == 1:
-        return await m.reply(text=text, disable_web_page_preview=True)
-    elif len(cmd) == 2:
-        base_site = cmd[1].strip()
-        if base_site == None:
-            await update_user_info(user_id, {"base_site": base_site})
-            return await m.reply("<b>Base Site updated successfully</b>")
-            
-        if not domain(base_site):
-            return await m.reply(text=text, disable_web_page_preview=True)
-        await update_user_info(user_id, {"base_site": base_site})
-        await m.reply("<b>Base Site updated successfully</b>")
 
 
 @Client.on_callback_query()
