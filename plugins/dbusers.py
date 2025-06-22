@@ -58,7 +58,7 @@ class Database:
     #     return 0
 
 async def check_remaining_uasge(self, user_id):
-    user_data = await self.users.find_one({"id": int(user_id)})
+    user_data = await self.col.find_one({"id": int(user_id)})
     if user_data:
         expiry_str = user_data.get("expiry_date")
         if expiry_str is None:
