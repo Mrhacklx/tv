@@ -46,7 +46,7 @@ def formate_file_name(file_name):
 async def start(client, message):
     username = client.me.username
     if not await db.is_user_exist(message.from_user.id):
-        expiry_date = (datetime.utcnow() + timedelta(days=30)).strftime('%Y-%m-%d')
+        expiry_date = (datetime.utcnow() + timedelta(days=10)).strftime('%Y-%m-%d')
         await db.add_user(message.from_user.id, message.from_user.first_name, expiry_date)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
