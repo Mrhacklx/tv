@@ -108,11 +108,12 @@ async def start(client, message):
             await verify_user(client, userid, token)
         else:
             return await message.reply_text(
-                text="""🚫 Free plan khatam ho gaya  
-                🔐 File access ke liye sirf ek baar verify karo  
-                ✅ Aaj ke liye bas ek hi baar verification lagega  
-                
-                📅 Subscription ke liye /plan par click kare""",
+                text = """🚫 Free plan khatam ho gaya  
+🔐 File access ke liye sirf ek baar verify karo  
+✅ Aaj ke liye bas ek hi baar verification lagega  
+
+📅 Subscription ke liye /plan par click kare"""
+,
                 protect_content=True
             )
     elif data.split("-", 1)[0] == "BATCH":
@@ -125,11 +126,12 @@ async def start(client, message):
                     InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                 ]]
                 await message.reply_text(
-                    text="""🚫 Free plan khatam ho gaya  
-                🔐 File access ke liye sirf ek baar verify karo  
-                ✅ Aaj ke liye bas ek hi baar verification lagega  
-                
-                📅 Subscription ke liye /plan par click kare""",
+                    text = """🚫 Free plan khatam ho gaya  
+🔐 File access ke liye sirf ek baar verify karo  
+✅ Aaj ke liye bas ek hi baar verification lagega  
+
+📅 Subscription ke liye /plan par click kare"""
+,
                     protect_content=True,
                     reply_markup=InlineKeyboardMarkup(btn)
                 )
@@ -226,10 +228,11 @@ async def start(client, message):
             InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{username}?start=", data))
         ],[
             InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)]]
-        await message.reply_text(text="""🚫 Free plan khatam ho gaya 
-        🔐 File access ke liye sirf ek baar verify karo  
-        ✅ Aaj ke liye bas ek hi baar verification lagega  
-        📅 Subscription ke liye /plan par click kare""",
+        await message.reply_text(text = """🚫 Free plan khatam ho gaya  
+🔐 File access ke liye sirf ek baar verify karo  
+✅ Aaj ke liye bas ek hi baar verification lagega  
+
+📅 Subscription ke liye /plan par click kare""",
                                  protect_content=True,
                                  reply_markup=InlineKeyboardMarkup(btn))
         return
