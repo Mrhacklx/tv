@@ -26,8 +26,7 @@ PORT = environ.get("PORT", "8080")
 
 PREMIUM_MODE = bool(environ.get('PREMIUM_MODE', True))
 PAYMENT_QR = environ.get('PAYMENT_QR', 'https://vault.pictures/media/images/94/89/aa/9489aa904a9f44bd8c92abdd908a6270.png') # payment code picture url.
-PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>💸 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐏𝐥𝐚𝐧𝐬 💸 🔹 30₹ – 1 Month 🔹 100₹ – 5 Months 🔹 200₹ – 12 Months 🎁 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 🎁 ✅ No verification needed ✅ No link opening required 📥 Direct file access 🚫 Ad-free experience 🛠️ Full admin support ⏱️ Requests completed within 1 hour (if available) ✨ 𝐔𝐏𝐈 𝐈𝐃: <code>raxiecat@ybl</code> 🔎 Check your plan here: /myplan 📸 After payment, send a screenshot ⏳ Please wait patiently while we activate your premium access</b>')
-
+PAYMENT_TEXT = environ.get('PAYMENT_TEXT', """<b>💸 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐏𝐥𝐚𝐧𝐬 💸\n\n🔹 30₹ – 1 Month  \n🔹 100₹ – 5 Months  \n🔹 200₹ – 12 Months\n\n🎁 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 🎁\n\n✅ No verification needed  \n✅ No link opening required  \n📥 Direct file access  \n🚫 Ad-free experience    \n🛠️ Full admin support  \n⏱️ Requests completed within 1 hour (if available)\n\n✨ 𝐔𝐏𝐈 𝐈𝐃: <code>raxiecat@ybl</code>\n\n🔎 Check your plan here: /myplan\n\n📸 After payment, send a screenshot  \n⏳ Please wait patiently while we activate your premium access</b>""")
 
 # Clone Info :-
 CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
